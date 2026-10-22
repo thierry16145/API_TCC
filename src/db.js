@@ -11,6 +11,9 @@ const pool = mysql.createPool({
   connectionLimit: 10,
   queueLimit: 0,
   timezone: 'Z',
+  ssl: process.env.DB_SSL === 'true'
+    ? { minVersion: 'TLSv1.2' }
+    : undefined,
   decimalNumbers: true
 });
 
