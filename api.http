@@ -21,7 +21,7 @@ Content-Type: application/json
 }
 
 ### Troque pelo token real retornado no login/cadastro
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzAwMDUsImVtYWlsIjoibW90b3Jpc3RhLnRlc3RlQGV4YW1wbGUuY29tIiwicGVyZmlsIjoibW90b3Jpc3RhIiwiaWF0IjoxNzkyNjk3NTQ3LCJleHAiOjE3OTI3MjYzNDd9.eI4LeDLxdNHIrD6YjvbeJA5ava13unp0fE5pVKWEUZk
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzAwMDUsImVtYWlsIjoibW90b3Jpc3RhLnRlc3RlQGV4YW1wbGUuY29tIiwicGVyZmlsIjoibW90b3Jpc3RhIiwiaWF0IjoxNzkyNjk5MTQxLCJleHAiOjE3OTI3Mjc5NDF9.sCB1bakFsJuBNemTcGTb5dSCJCPHJ6Eu1_brDTwQM64
 
 ### 4. Ver perfil do usuário autenticado
 GET https://api-tcc-one.vercel.app/api/auth/me
