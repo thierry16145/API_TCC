@@ -1,0 +1,63 @@
+### 1. Verificar se API e banco estão funcionando
+GET http://localhost:3000/api/health
+
+### 2. Cadastrar usuário (troque os dados de exemplo)
+POST http://localhost:3000/api/auth/register
+Content-Type: application/json
+
+{
+  "nome": "Motorista Teste",
+  "email": "motorista.teste@example.com",
+  "senha": "SenhaSegura123"
+}
+
+### 3. Entrar. Copie o token retornado para a variável abaixo.
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "motorista.teste@example.com",
+  "senha": "SenhaSegura123"
+}
+
+### Troque pelo token real retornado no login/cadastro
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJtb3RvcmlzdGEudGVzdGVAZXhhbXBsZS5jb20iLCJwZXJmaWwiOiJtb3RvcmlzdGEiLCJpYXQiOjE3OTI0OTY3NzgsImV4cCI6MTc5MjUyNTU3OH0.WG4BBF-dZFaGmOHgN5i_OLPp4-Fztkd1o4jaimd7LbQ
+
+### 4. Ver perfil do usuário autenticado
+GET http://localhost:3000/api/auth/me
+Authorization: Bearer {{token}}
+
+### 5. Iniciar uma jornada
+POST http://localhost:3000/api/jornadas
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{}
+
+### 6. Listar jornadas do usuário
+GET http://localhost:3000/api/jornadas
+Authorization: Bearer {{token}}
+
+### 7. Consultar pontos GPS da jornada 5
+GET http://localhost:3000/api/jornadas/5/pontos
+Authorization: Bearer {{token}}
+
+### 7.1. Enviar um ponto GPS para a jornada 5 (Exemplo de POST)
+POST http://localhost:3000/api/jornadas/5/pontos
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "latitude": -23.5505200,
+  "longitude": -46.6333080,
+  "velocidadeKmh": 12.5,
+  "precisaoM": 8.0
+}
+
+### 8. Ver jornada e os pontos GPS
+GET http://localhost:3000/api/jornadas/5
+Authorization: Bearer {{token}}
+
+### 9. Finalizar jornada
+PATCH http://localhost:3000/api/jornadas/5/finalizar
+Authorization: Bearer {{token}}
