@@ -6,16 +6,25 @@ const pool = mysql.createPool({
   user: process.env.DB_USER || 'root',
   password: process.env.DB_PASSWORD || '',
   database: process.env.DB_NAME || 'monitoramento_jornada',
+
   waitForConnections: true,
   connectionLimit: Number(process.env.DB_CONNECTION_LIMIT || 10),
   queueLimit: 0,
+
   charset: 'utf8mb4',
   timezone: 'local',
+
+  // Ativa TLS para conectar ao TiDB Cloud
+  ssl: process.env.DB_SSL === 'true'
+    ? { minVersion: 'TLSv1.2' }
+    : undefined,
+
   decimalNumbers: true
 });
 
 async function verificarBanco() {
   const connection = await pool.getConnection();
+
   try {
     await connection.query('SELECT 1');
   } finally {
@@ -23,4 +32,7 @@ async function verificarBanco() {
   }
 }
 
-module.exports = { pool, verificarBanco };
+module.exports = {
+  pool,
+  verificarBanco
+};
