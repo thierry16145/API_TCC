@@ -34,9 +34,9 @@ router.get('/', async (req, res, next) => {
     const limiteInformado = Number.parseInt(req.query.limite, 10);
     const limite = Number.isInteger(limiteInformado) ? Math.max(1, Math.min(limiteInformado, 100)) : 20;
     const [jornadas] = await pool.query(
-      `SELECT j.id, j.inicio, j.fim, j.status, j.criado_em,
+      `SELECT j.id, j.data_hora_inicio, j.data_hora_fim, j.status, j.criado_em,
         (SELECT COUNT(*) FROM pontos_localizacao p WHERE p.jornada_id = j.id) AS total_pontos
-       FROM jornadas j WHERE j.usuario_id = ? ORDER BY j.inicio DESC LIMIT ${limite}`,
+       FROM jornadas j WHERE j.usuario_id = ? ORDER BY j.data_hora_inicio DESC LIMIT ${limite}`,
       [req.usuario.id]
     );
     return res.json({ jornadas });
