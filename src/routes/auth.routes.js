@@ -96,7 +96,7 @@ router.post('/login', async (req, res, next) => {
 router.get('/me', autenticar, async (req, res, next) => {
   try {
     const [usuarios] = await pool.execute(
-      'SELECT id, nome, email, perfil, criado_em FROM usuarios WHERE id = ? LIMIT 1',
+      'SELECT id, nome, email, perfil, data_criacao AS criado_em FROM usuarios WHERE id = ? LIMIT 1',
       [req.usuario.id]
     );
     if (!usuarios[0]) return res.status(404).json({ erro: 'Usuário não encontrado.' });
